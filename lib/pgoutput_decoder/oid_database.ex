@@ -42,5 +42,5 @@ defmodule PgoutputDecoder.OidDatabase do
     def name_for_type_id(unquote(array_oid)), do: {:array, unquote(type_name)}
   end
 
-  def name_for_type_id(_), do: :unknown
+  def name_for_type_id(oid), do: {:unknown, oid}
 end
