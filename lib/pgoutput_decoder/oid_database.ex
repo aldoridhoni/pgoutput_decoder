@@ -37,9 +37,9 @@ defmodule PgoutputDecoder.OidDatabase do
     {:varchar, 1043, 1015}
   ]
 
-  # TODO: Handle array oid type lookup
-  for {type_name, type_id, _array_oid} <- oid_db do
+  for {type_name, type_id, array_oid} <- oid_db do
     def name_for_type_id(unquote(type_id)), do: unquote(type_name)
+    def name_for_type_id(unquote(array_oid)), do: {:array, unquote(type_name)}
   end
 
   def name_for_type_id(_), do: :unknown
