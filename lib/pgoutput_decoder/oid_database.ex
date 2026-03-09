@@ -25,6 +25,7 @@ defmodule PgoutputDecoder.OidDatabase do
     {:jsonb, 3802, 3807},
     {:macaddr, 829, 1040},
     {:macaddr8, 774, 775},
+    {:numeric, 1700, 1231},
     {:point, 600, 1017},
     {:text, 25, 1009},
     {:time, 1083, 1183},

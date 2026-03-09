@@ -85,6 +85,11 @@ defmodule PgoutputDecoderTest do
              }
   end
 
+  test "decodes numeric and numeric array OIDs" do
+    assert PgoutputDecoder.OidDatabase.name_for_type_id(1700) == :numeric
+    assert PgoutputDecoder.OidDatabase.name_for_type_id(1231) == {:array, :numeric}
+  end
+
   describe "truncate messages" do
     test "decodes messages" do
       assert PgoutputDecoder.decode_message(<<84, 0, 0, 0, 1, 0, 0, 0, 96, 0>>) ==
