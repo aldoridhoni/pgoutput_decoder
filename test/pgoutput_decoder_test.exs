@@ -90,6 +90,24 @@ defmodule PgoutputDecoderTest do
     assert PgoutputDecoder.OidDatabase.name_for_type_id(1231) == {:array, :numeric}
   end
 
+  test "decodes newly added OIDs" do
+    # Basic Types
+    assert PgoutputDecoder.OidDatabase.name_for_type_id(19) == :name
+    assert PgoutputDecoder.OidDatabase.name_for_type_id(1003) == {:array, :name}
+
+    # JSON Types
+    assert PgoutputDecoder.OidDatabase.name_for_type_id(4072) == :jsonpath
+
+    # Range/Multirange Types
+    assert PgoutputDecoder.OidDatabase.name_for_type_id(4535) == :datemultirange
+
+    # Bit Types
+    assert PgoutputDecoder.OidDatabase.name_for_type_id(1560) == :bit
+
+    # Network Types
+    assert PgoutputDecoder.OidDatabase.name_for_type_id(650) == :cidr
+  end
+
   describe "truncate messages" do
     test "decodes messages" do
       assert PgoutputDecoder.decode_message(<<84, 0, 0, 0, 1, 0, 0, 0, 96, 0>>) ==
